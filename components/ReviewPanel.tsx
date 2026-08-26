@@ -505,26 +505,28 @@ export function ReviewPanel() {
       </div>
 
       {/* Content-type filter: separates writing submissions from comments */}
-      <div
-        className="flex gap-1.5 mb-6 p-1.5 rounded-full w-fit ml-6"
-        style={{ backgroundColor: colors.gray100 }}
-      >
-        {typeConfig.map((t) => (
-          <button
-            key={t.key}
-            onClick={() => { setContentType(t.key); if (t.key === "writings" || t.key === "comments") setTab(t.key === "writings" ? "unverified" : "pending"); }}
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm transition-all active:scale-95"
-            style={{
-              backgroundColor: contentType === t.key ? colors.surface : "transparent",
-              color: contentType === t.key ? colors.heading : colors.gray500,
-              fontWeight: contentType === t.key ? 600 : 500,
-              boxShadow: contentType === t.key ? "0 1px 3px rgba(0,0,0,0.08)" : "none",
-            }}
-          >
-            {t.icon}
-            {t.label}{t.count !== null && ` (${t.count})`}
-          </button>
-        ))}
+      <div className="mb-6 -mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto">
+        <div
+          className="flex gap-1.5 p-1.5 rounded-full w-fit sm:ml-6"
+          style={{ backgroundColor: colors.gray100 }}
+        >
+          {typeConfig.map((t) => (
+            <button
+              key={t.key}
+              onClick={() => { setContentType(t.key); if (t.key === "writings" || t.key === "comments") setTab(t.key === "writings" ? "unverified" : "pending"); }}
+              className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm transition-all active:scale-95 shrink-0 whitespace-nowrap"
+              style={{
+                backgroundColor: contentType === t.key ? colors.surface : "transparent",
+                color: contentType === t.key ? colors.heading : colors.gray500,
+                fontWeight: contentType === t.key ? 600 : 500,
+                boxShadow: contentType === t.key ? "0 1px 3px rgba(0,0,0,0.08)" : "none",
+              }}
+            >
+              {t.icon}
+              {t.label}{t.count !== null && ` (${t.count})`}
+            </button>
+          ))}
+        </div>
       </div>
 
       <SaveBanner show={saved} />
@@ -554,21 +556,23 @@ export function ReviewPanel() {
       )}
 
       {isModerationView && (
-        <div className="flex gap-2 mb-6 border-b pb-4" style={{ borderColor: colors.gray200 }}>
-          {tabConfig.map((t) => (
-            <button
-              key={t.key}
-              onClick={() => setTab(t.key)}
-              className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm transition-all active:scale-95"
-              style={{
-                backgroundColor: tab === t.key ? colors.green900 : colors.gray100,
-                color: tab === t.key ? colors.white : colors.gray700,
-              }}
-            >
-              {t.icon}
-              {t.label} ({activeCounts[t.key]})
-            </button>
-          ))}
+        <div className="mb-6 -mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto border-b pb-4" style={{ borderColor: colors.gray200 }}>
+          <div className="flex gap-2 w-fit">
+            {tabConfig.map((t) => (
+              <button
+                key={t.key}
+                onClick={() => setTab(t.key)}
+                className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm transition-all active:scale-95 shrink-0 whitespace-nowrap"
+                style={{
+                  backgroundColor: tab === t.key ? colors.green900 : colors.gray100,
+                  color: tab === t.key ? colors.white : colors.gray700,
+                }}
+              >
+                {t.icon}
+                {t.label} ({activeCounts[t.key]})
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
