@@ -18,7 +18,7 @@ export function ThemeTab({ config, draft, setDraft, updateConfig, handleSave }: 
   const [newThemeOption, setNewThemeOption] = useState("");
 
   return (
-            <div className="max-w-xl flex flex-col gap-5">
+            <div className="max-w-3xl flex flex-col gap-5 pl-6">
               <div className="rounded-xl p-4 border" style={{ backgroundColor: colors.yellow50, borderColor: colors.amber200 }}>
                 <p style={{ color: colors.amber800, fontSize: "0.8rem" }}>
                   Changes here update the theme banner on the Homepage and the Help Desk form.
