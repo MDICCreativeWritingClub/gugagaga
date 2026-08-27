@@ -503,29 +503,22 @@ export function ReviewPanel() {
         </div>
       </div>
 
-      {/* Content-type filter: separates writing submissions from comments */}
-      <div className="mb-6 -mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto">
-        <div
-          className="flex gap-1.5 p-1.5 rounded-full w-fit sm:ml-6"
-          style={{ backgroundColor: colors.gray100 }}
-        >
-          {typeConfig.map((t) => (
-            <button
-              key={t.key}
-              onClick={() => { setContentType(t.key); if (t.key === "writings" || t.key === "comments") setTab(t.key === "writings" ? "unverified" : "pending"); }}
-              className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm transition-all active:scale-95 shrink-0 whitespace-nowrap"
-              style={{
-                backgroundColor: contentType === t.key ? colors.surface : "transparent",
-                color: contentType === t.key ? colors.heading : colors.gray500,
-                fontWeight: contentType === t.key ? 600 : 500,
-                boxShadow: contentType === t.key ? "0 1px 3px rgba(0,0,0,0.08)" : "none",
-              }}
-            >
-              {t.icon}
-              {t.label}{t.count !== null && ` (${t.count})`}
-            </button>
-          ))}
-        </div>
+      {/* Tabs — same flat pill bar style as the Control Panel, single separating line below */}
+      <div className="flex gap-2 flex-wrap mb-8 pb-5 border-b" style={{ borderColor: colors.gray200 }}>
+        {typeConfig.map((t) => (
+          <button
+            key={t.key}
+            onClick={() => { setContentType(t.key); if (t.key === "writings" || t.key === "comments") setTab(t.key === "writings" ? "unverified" : "pending"); }}
+            className="flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all active:scale-95"
+            style={{
+              backgroundColor: contentType === t.key ? colors.green900 : colors.gray100,
+              color: contentType === t.key ? colors.white : colors.gray700,
+            }}
+          >
+            {t.icon}
+            {t.label}{t.count !== null && ` (${t.count})`}
+          </button>
+        ))}
       </div>
 
       <SaveBanner show={saved} />
@@ -555,7 +548,7 @@ export function ReviewPanel() {
       )}
 
       {isModerationView && (
-        <div className="mb-6 -mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto border-b pb-4" style={{ borderColor: colors.gray200 }}>
+        <div className="mb-6 -mx-5 px-5 sm:mx-0 sm:px-0 overflow-x-auto">
           <div className="flex gap-2 w-fit">
             {tabConfig.map((t) => (
               <button
