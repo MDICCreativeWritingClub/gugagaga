@@ -473,10 +473,10 @@ export function ReviewPanel() {
 
   return (
     <div className="max-w-6xl mx-auto px-5 pt-24 pb-16">
-      <div className="flex items-start justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <ClipboardList size={22} style={{ color: colors.green600 }} />
+            <ClipboardList size={26} style={{ color: colors.green600 }} className="shrink-0" />
             <h1 style={{ color: colors.heading, fontWeight: 700, fontSize: "1.75rem" }}>The Review Panel</h1>
           </div>
           <p style={{ color: colors.gray500, fontSize: "0.875rem" }}>
