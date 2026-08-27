@@ -31,13 +31,13 @@ export function TeamTab({ executives, editorialTeam, classReps, mediaTeam, pastM
 
   return (
             <div className="max-w-3xl flex flex-col gap-8">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <p style={{ color: colors.gray500, fontSize: "0.85rem" }}>
                   Manage who appears in Our Team — Executives and the Editorial Team.
                 </p>
                 <button
                   onClick={() => setShowAddMember((s) => !s)}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-white text-sm hover:opacity-90 transition-opacity shrink-0"
+                  className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-white text-sm hover:opacity-90 transition-opacity shrink-0 w-full sm:w-auto"
                   style={{ backgroundColor: colors.green900 }}
                 >
                   <Plus size={14} /> Add New Member
@@ -170,36 +170,40 @@ export function TeamTab({ executives, editorialTeam, classReps, mediaTeam, pastM
                   {executives.map((m) => (
                     <div
                       key={m.id ?? m.name + m.period}
-                      className="flex items-center gap-4 p-4 rounded-xl border"
+                      className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-xl border"
                       style={{ backgroundColor: colors.badgeBg, borderColor: colors.badgeBorder }}
                     >
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
-                        style={{ backgroundColor: colors.green900 }}
-                      >
-                        <GraduationCap size={18} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
-                          {m.isTeacher && (
-                            <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.green900, color: colors.white }}>
-                              Teacher
-                            </span>
-                          )}
+                      <div className="flex items-center gap-4 flex-1 min-w-0">
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
+                          style={{ backgroundColor: colors.green900 }}
+                        >
+                          <GraduationCap size={18} />
                         </div>
-                        <p style={{ color: colors.green600, fontSize: "0.8rem" }}>{m.role}</p>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
+                            {m.isTeacher && (
+                              <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.green900, color: colors.white }}>
+                                Teacher
+                              </span>
+                            )}
+                          </div>
+                          <p style={{ color: colors.green600, fontSize: "0.8rem" }}>{m.role}</p>
+                        </div>
                       </div>
-                      <span style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
-                      <button
-                        onClick={() => {
-                          if (confirm(`Remove ${m.name} from Our Team? They will move to Past Members in the Archive.`)) removeMember(m);
-                        }}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
-                        style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
-                      >
-                        <Trash2 size={12} /> Remove
-                      </button>
+                      <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                        <span style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
+                        <button
+                          onClick={() => {
+                            if (confirm(`Remove ${m.name} from Our Team? They will move to Past Members in the Archive.`)) removeMember(m);
+                          }}
+                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
+                          style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
+                        >
+                          <Trash2 size={12} /> Remove
+                        </button>
+                      </div>
                     </div>
                   ))}
                   {executives.length === 0 && (
@@ -218,37 +222,41 @@ export function TeamTab({ executives, editorialTeam, classReps, mediaTeam, pastM
                   {editorialTeam.map((m) => (
                     <div
                       key={m.id ?? m.name + m.period}
-                      className="flex items-center gap-4 p-4 rounded-xl border"
+                      className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-xl border"
                       style={{ backgroundColor: colors.surface, borderColor: colors.gray200 }}
                     >
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
-                        style={{ backgroundColor: colors.gray500 }}
-                      >
-                        {m.name[0]}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
-                          {m.isTeacher && (
-                            <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.green900, color: colors.white }}>
-                              Teacher
-                            </span>
-                          )}
+                      <div className="flex items-center gap-4 flex-1 min-w-0">
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
+                          style={{ backgroundColor: colors.gray500 }}
+                        >
+                          {m.name[0]}
                         </div>
-                        <p style={{ color: colors.green600, fontSize: "0.8rem" }}>{m.role}</p>
-                        {m.grade && <p style={{ color: colors.gray500, fontSize: "0.75rem" }}>{m.grade}</p>}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
+                            {m.isTeacher && (
+                              <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.green900, color: colors.white }}>
+                                Teacher
+                              </span>
+                            )}
+                          </div>
+                          <p style={{ color: colors.green600, fontSize: "0.8rem" }}>{m.role}</p>
+                          {m.grade && <p style={{ color: colors.gray500, fontSize: "0.75rem" }}>{m.grade}</p>}
+                        </div>
                       </div>
-                      <span style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
-                      <button
-                        onClick={() => {
-                          if (confirm(`Remove ${m.name} from Our Team? They will move to Past Members in the Archive.`)) removeMember(m);
-                        }}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
-                        style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
-                      >
-                        <Trash2 size={12} /> Remove
-                      </button>
+                      <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                        <span style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
+                        <button
+                          onClick={() => {
+                            if (confirm(`Remove ${m.name} from Our Team? They will move to Past Members in the Archive.`)) removeMember(m);
+                          }}
+                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
+                          style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
+                        >
+                          <Trash2 size={12} /> Remove
+                        </button>
+                      </div>
                     </div>
                   ))}
                   {editorialTeam.length === 0 && (
@@ -267,37 +275,41 @@ export function TeamTab({ executives, editorialTeam, classReps, mediaTeam, pastM
                   {classReps.map((m) => (
                     <div
                       key={m.id ?? m.name + m.period}
-                      className="flex items-center gap-4 p-4 rounded-xl border"
+                      className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-xl border"
                       style={{ backgroundColor: colors.surface, borderColor: colors.gray200 }}
                     >
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
-                        style={{ backgroundColor: colors.gray500 }}
-                      >
-                        {m.name[0]}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
-                          {m.isTeacher && (
-                            <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.green900, color: colors.white }}>
-                              Teacher
-                            </span>
-                          )}
+                      <div className="flex items-center gap-4 flex-1 min-w-0">
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
+                          style={{ backgroundColor: colors.gray500 }}
+                        >
+                          {m.name[0]}
                         </div>
-                        <p style={{ color: colors.green600, fontSize: "0.8rem" }}>{m.role}</p>
-                        {m.grade && <p style={{ color: colors.gray500, fontSize: "0.75rem" }}>{m.grade}</p>}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
+                            {m.isTeacher && (
+                              <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.green900, color: colors.white }}>
+                                Teacher
+                              </span>
+                            )}
+                          </div>
+                          <p style={{ color: colors.green600, fontSize: "0.8rem" }}>{m.role}</p>
+                          {m.grade && <p style={{ color: colors.gray500, fontSize: "0.75rem" }}>{m.grade}</p>}
+                        </div>
                       </div>
-                      <span style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
-                      <button
-                        onClick={() => {
-                          if (confirm(`Remove ${m.name} from Our Team? They will move to Past Members in the Archive.`)) removeMember(m);
-                        }}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
-                        style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
-                      >
-                        <Trash2 size={12} /> Remove
-                      </button>
+                      <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                        <span style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
+                        <button
+                          onClick={() => {
+                            if (confirm(`Remove ${m.name} from Our Team? They will move to Past Members in the Archive.`)) removeMember(m);
+                          }}
+                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
+                          style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
+                        >
+                          <Trash2 size={12} /> Remove
+                        </button>
+                      </div>
                     </div>
                   ))}
                   {classReps.length === 0 && (
@@ -316,37 +328,41 @@ export function TeamTab({ executives, editorialTeam, classReps, mediaTeam, pastM
                   {mediaTeam.map((m) => (
                     <div
                       key={m.id ?? m.name + m.period}
-                      className="flex items-center gap-4 p-4 rounded-xl border"
+                      className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-xl border"
                       style={{ backgroundColor: colors.surface, borderColor: colors.gray200 }}
                     >
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
-                        style={{ backgroundColor: colors.gray500 }}
-                      >
-                        {m.name[0]}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
-                          {m.isTeacher && (
-                            <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.green900, color: colors.white }}>
-                              Teacher
-                            </span>
-                          )}
+                      <div className="flex items-center gap-4 flex-1 min-w-0">
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
+                          style={{ backgroundColor: colors.gray500 }}
+                        >
+                          {m.name[0]}
                         </div>
-                        <p style={{ color: colors.green600, fontSize: "0.8rem" }}>{m.role}</p>
-                        {m.grade && <p style={{ color: colors.gray500, fontSize: "0.75rem" }}>{m.grade}</p>}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
+                            {m.isTeacher && (
+                              <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.green900, color: colors.white }}>
+                                Teacher
+                              </span>
+                            )}
+                          </div>
+                          <p style={{ color: colors.green600, fontSize: "0.8rem" }}>{m.role}</p>
+                          {m.grade && <p style={{ color: colors.gray500, fontSize: "0.75rem" }}>{m.grade}</p>}
+                        </div>
                       </div>
-                      <span style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
-                      <button
-                        onClick={() => {
-                          if (confirm(`Remove ${m.name} from Our Team? They will move to Past Members in the Archive.`)) removeMember(m);
-                        }}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
-                        style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
-                      >
-                        <Trash2 size={12} /> Remove
-                      </button>
+                      <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                        <span style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
+                        <button
+                          onClick={() => {
+                            if (confirm(`Remove ${m.name} from Our Team? They will move to Past Members in the Archive.`)) removeMember(m);
+                          }}
+                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
+                          style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
+                        >
+                          <Trash2 size={12} /> Remove
+                        </button>
+                      </div>
                     </div>
                   ))}
                   {mediaTeam.length === 0 && (
@@ -370,47 +386,52 @@ export function TeamTab({ executives, editorialTeam, classReps, mediaTeam, pastM
                   {pastMembers.map((m) => (
                     <div
                       key={m.id ?? m.name + m.role + m.period}
-                      className="flex items-center gap-4 p-4 rounded-xl border"
+                      className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-xl border"
                       style={{ backgroundColor: colors.gray50, borderColor: colors.gray200, opacity: 0.9 }}
                     >
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
-                        style={{ backgroundColor: colors.gray400 }}
-                      >
-                        {m.name[0]}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
-                          {m.isTeacher && (
-                            <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.gray300, color: colors.gray700 }}>
-                              Teacher
-                            </span>
-                          )}
+                      <div className="flex items-center gap-4 flex-1 min-w-0">
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white"
+                          style={{ backgroundColor: colors.gray400 }}
+                        >
+                          {m.name[0]}
                         </div>
-                        <p style={{ color: colors.gray500, fontSize: "0.8rem" }}>{m.role}</p>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <p style={{ color: colors.heading, fontWeight: 600, fontSize: "0.9rem" }}>{m.name}</p>
+                            {m.isTeacher && (
+                              <span className="px-2 py-0.5 rounded-full text-[0.65rem] font-medium" style={{ backgroundColor: colors.gray300, color: colors.gray700 }}>
+                                Teacher
+                              </span>
+                            )}
+                          </div>
+                          <p style={{ color: colors.gray500, fontSize: "0.8rem" }}>{m.role}</p>
+                        </div>
                       </div>
-                      <span style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
-                      <button
-                        onClick={() => restoreMember(m)}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
-                        style={{ backgroundColor: colors.badgeBg, color: colors.badgeText, border: `1px solid ${colors.badgeBorder}` }}
-                        title="Move back to the active team"
-                      >
-                        <RotateCcw size={12} /> Restore
-                      </button>
-                      <button
-                        onClick={() => {
-                          if (confirm(`Permanently delete ${m.name}'s record? This cannot be undone and they will no longer appear in Past Members.`)) {
-                            deleteMember(m);
-                          }
-                        }}
-                        className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
-                        style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
-                        title="Permanently delete — use only if this entry was a mistake"
-                      >
-                        <XOctagon size={12} /> Delete Permanently
-                      </button>
+                      <span className="sm:hidden" style={{ color: colors.gray400, fontSize: "0.75rem" }}>{m.period}</span>
+                      <div className="flex items-center gap-2 sm:shrink-0">
+                        <span className="hidden sm:inline-block" style={{ color: colors.gray400, fontSize: "0.75rem", whiteSpace: "nowrap" }}>{m.period}</span>
+                        <button
+                          onClick={() => restoreMember(m)}
+                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
+                          style={{ backgroundColor: colors.badgeBg, color: colors.badgeText, border: `1px solid ${colors.badgeBorder}` }}
+                          title="Move back to the active team"
+                        >
+                          <RotateCcw size={12} /> Restore
+                        </button>
+                        <button
+                          onClick={() => {
+                            if (confirm(`Permanently delete ${m.name}'s record? This cannot be undone and they will no longer appear in Past Members.`)) {
+                              deleteMember(m);
+                            }
+                          }}
+                          className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs hover:opacity-80 transition-opacity shrink-0"
+                          style={{ backgroundColor: colors.red50, color: colors.red600, border: `1px solid ${colors.red200}` }}
+                          title="Permanently delete — use only if this entry was a mistake"
+                        >
+                          <XOctagon size={12} /> Delete Permanently
+                        </button>
+                      </div>
                     </div>
                   ))}
                   {pastMembers.length === 0 && (
