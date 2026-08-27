@@ -480,8 +480,7 @@ export function ReviewPanel() {
             <h1 style={{ color: colors.heading, fontWeight: 700, fontSize: "1.75rem" }}>The Review Panel</h1>
           </div>
           <p style={{ color: colors.gray500, fontSize: "0.875rem" }}>
-            Review and action student submissions and comments. Writings move through Unverified → Pending → Waiting
-            for Confirmation before going to the Control Panel for final publishing.
+            Review and action student submissions and comments.
           </p>
         </div>
         <div className="flex gap-2 shrink-0">
